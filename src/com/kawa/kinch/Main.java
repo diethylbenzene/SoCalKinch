@@ -322,7 +322,7 @@ public class Main implements Runnable
 			fastest = Util.findBest(mbld);
 		else
 			fastest = Util.parseMBLD(Parser.parseForWR(Parser.DB_SINGLE, "333mbf"));
-
+		
 		for(int i = 0; i < wcaIds.length; i++)
 		{
 			kinchDone[i][17] = (mbld[i] / fastest) * 100.0;

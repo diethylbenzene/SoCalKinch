@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import com.opencsv.CSVReader;
 
@@ -89,13 +90,16 @@ public class Parser
 	 */
 	public static String[] readFromFile(File file) throws IOException
 	{
+		Pattern pattern = Pattern.compile("\\d\\d\\d\\d[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]\\d\\d");
 		ArrayList<String> read = new ArrayList<String>();
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
 		    	if(!line.isEmpty()) {
-		    		read.add(line);
-		    		num++;
+		    		if(pattern.matcher(line.trim()).matches()) {
+		    			read.add(line.trim().toUpperCase());
+		    			num++;
+		    		}
 		    	}
 		    }
 		}

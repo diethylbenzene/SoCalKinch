@@ -159,10 +159,10 @@ public class Util
 	 */
 	public static double findBest(double[] input)
 	{
-		double comparison = Integer.MAX_VALUE;
+		double comparison = Double.MIN_VALUE;
 		for (double i : input) {
 			if(i != 0)
-				comparison = Math.min(comparison, i);
+				comparison = Math.max(comparison, i);
 		}
 		return comparison;
 	}
@@ -213,15 +213,13 @@ public class Util
 			
 			int solved = 99 - Integer.parseInt(in.substring(0, 2));
 			int time = Integer.parseInt(in.substring(2, 7));
-			int unsolved = Integer.parseInt(in.substring(7, 9));
 			
-			int score = solved - unsolved;
-			if(score <= 0)
+			if(solved <= 0)
 				return 0;
 			else
 			{
 				double hour = (3600.0 - time) / 3600.0;
-				return score + hour;
+				return solved + hour;
 			}
 		}
 	}

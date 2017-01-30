@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 
 /**
  * A basic output stream for writing the console code to a JTextArea.
- * @author ethanvovan
+ * @author Kawa
  */
 public class ConsoleOutputStream extends OutputStream
 {

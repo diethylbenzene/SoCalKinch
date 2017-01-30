@@ -10,7 +10,7 @@ import com.opencsv.CSVReader;
 
 /**
  * This class will read the WCA database files that was retrieved from {@link Retriever} and find the entries with OpenCSV.
- * @author ethanvovan, OpenCSV 3.8
+ * @author Kawa, OpenCSV 3.8
  *
  */
 public class Parser

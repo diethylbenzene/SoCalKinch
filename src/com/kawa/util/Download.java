@@ -13,7 +13,7 @@ import javax.swing.JProgressBar;
 
 /**
  * Downloads a file, and outputs its progress to a {@link JProgressBar}.
- * @author ethanvovan
+ * @author Kawa
  *
  */
 public class Download {

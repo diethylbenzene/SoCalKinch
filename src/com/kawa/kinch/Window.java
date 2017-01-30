@@ -27,7 +27,7 @@ public class Window extends JFrame {
 	/**
 	 * The version number.
 	 */
-	private static String version = "1.0b8";
+	private static String version = "1.0b10";
 	
 	private static final long serialVersionUID = 2052283588480241620L;
 	private JCheckBox clean;

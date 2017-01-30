@@ -27,7 +27,7 @@ public class Window extends JFrame {
 	/**
 	 * The version number.
 	 */
-	private static String version = "1.0b5";
+	private static String version = "1.0b8";
 	
 	private static final long serialVersionUID = 2052283588480241620L;
 	private JCheckBox clean;
@@ -45,6 +45,8 @@ public class Window extends JFrame {
 	private JCheckBox relative;
 	private JButton start;
 	private int checks = 0;
+	
+	public static String outputFileLocation;
 
 	/**
 	 * Creates new form Window
@@ -347,7 +349,7 @@ public class Window extends JFrame {
 			} else {
 				Main main = new Main(jTextField1.getText(), console,
 						jProgressBar1, relative.isSelected(),
-						clean.isSelected(), new File(jTextField2.getText()
+						clean.isSelected(), new File(outputFileLocation
 								+ File.separator + "kinch.csv"));
 				new Thread(main).start();
 				start.setText("Stop!");
@@ -368,7 +370,8 @@ public class Window extends JFrame {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				jTextField2.setText(chooser.getSelectedFile()
-						.getCanonicalPath());
+						.getCanonicalPath() + File.separator + "kinch.csv");
+				outputFileLocation = chooser.getSelectedFile().getCanonicalPath();
 				checks++;
 				if (checks == 2)
 					start.setEnabled(true);

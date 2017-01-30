@@ -190,6 +190,9 @@ public class Main implements Runnable
 	 * @throws IOException
 	 */
 	private void start() throws IOException {
+		if(!new File(Window.outputFileLocation).exists())
+			throw new IOException("Directory not found!");
+		
 		System.out.println("> Cleaning");
 		Util.clean(true);
 		System.out.println("> Downloading database");
@@ -345,7 +348,7 @@ public class Main implements Runnable
 	{
 		CSVWriter writer = new CSVWriter(new FileWriter(new File("." + File.separator + "kinch.csv")), ',');
 
-		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "333bf", "333fm", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "333fm", "444bf", "555bf", "333mbf"};
+		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "333fm", "444bf", "555bf", "333mbf"};
 		writer.writeNext(header);
 
 		for(int i = 1; i <= wcaIds.length; i++)

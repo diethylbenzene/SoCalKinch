@@ -93,8 +93,10 @@ public class Parser
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
-		    	read.add(line);
-		    	num++;
+		    	if(!line.isEmpty()) {
+		    		read.add(line);
+		    		num++;
+		    	}
 		    }
 		}
 		

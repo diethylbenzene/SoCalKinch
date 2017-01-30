@@ -23,6 +23,10 @@ Java 1.8
 
 OpenCSV 3.8
 
+## Download
+
+Under the "releases" tab.
+
 ## Usage
 
 Double-click for the GUI version.

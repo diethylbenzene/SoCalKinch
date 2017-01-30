@@ -114,35 +114,13 @@ public class Main implements Runnable
 	/**
 	 * This flags whether or not to use the default location for the output CSV file.
 	 */
-	private boolean defaultFile;
 	
 	/**
 	 * This is the output CSV {@link File}.
 	 */
 	private File outputFile;
-	
+
 	/**
-	 * This constructor is used for when the user checks the {@code defaultFile} check box in the GUI.
-	 * @param file The WCA ID {@link File}
-	 * @param area The {@link JTextArea} for the console
-	 * @param bar The {@link JProgressBar} for the progress bar
-	 * @param relative Flags whether to use the best results found from the imported data, or from the current WRs. 
-	 * @param clean Flags whether or not to delete the previously downloaded database files. 
-	 */
-	public Main(String file, JTextArea area, JProgressBar bar, boolean relative, boolean clean)
-	{
-		this.wcaIdFile = new File(file);
-		this.bar = bar;
-		this.relative = relative;
-		this.clean = clean;
-		this.defaultFile = true;
-		PrintStream ps = new PrintStream(new ConsoleOutputStream(area));
-		System.setOut(ps);
-		System.setErr(ps);
-	}
-	
-	/**
-	 * This constructor is used for when the user does not check the {@code defaultFile} check box in the GUI.
 	 * @param file The WCA ID {@link File}
 	 * @param area The {@link JTextArea} for the console
 	 * @param bar The {@link JProgressBar} for the progress bar
@@ -157,7 +135,6 @@ public class Main implements Runnable
 		this.relative = relative;
 		this.clean = clean;
 		this.outputFile = outputFile;
-		this.defaultFile = false;
 		PrintStream ps = new PrintStream(new ConsoleOutputStream(area));
 		System.setOut(ps);
 		System.setErr(ps);
@@ -177,22 +154,14 @@ public class Main implements Runnable
 		this.bar = new JProgressBar();
 		this.clean = clean;
 		this.outputFile = outputFile;
-		this.defaultFile = false;
 	}
 	
 	public static void main(String[] args) {
-		new Thread(new Main(args[0], Boolean.parseBoolean(args[1]), Boolean.parseBoolean(args[2]), new File(args[3]))).start();
+		new Main(args[0], Boolean.parseBoolean(args[1]), Boolean.parseBoolean(args[2]), new File(args[3]));
 	}
 
-	/**
-	 * This method is invoked by the {@link Thread}. It executes the procedure outlined in the class's documentation.<br>
-	 * MBLD results are imported and calculated separately, since ranking MBLD requires a separate parsing step.
-	 * @throws IOException
-	 */
-	private void start() throws IOException {
-		if(!new File(Window.outputFileLocation).exists())
-			throw new IOException("Directory not found!");
-		
+	private void start() throws Exception
+	{	
 		System.out.println("> Cleaning");
 		Util.clean(true);
 		System.out.println("> Downloading database");
@@ -216,25 +185,21 @@ public class Main implements Runnable
 		System.out.println("> Calculating the average KinchRanks");
 		calculateAverageKinchRank();
 		System.out.println("> Writing to file");
-		
-		if(defaultFile)
-			fillCSV();
-		else
-			fillCSV(outputFile);
+		fillCSV(outputFile);
 
 		if(clean){ 
 			System.out.println("> Cleaning up");
 			Util.clean(false);
 		}
-
+		
 		System.out.println("> Done!");
 	}
-
+	
 	/**
 	 * This method fills the {@code kinchRaw} array with the data found from the WCA database file. 
 	 * @throws IOException
 	 */
-	private void fillRawData() throws IOException
+	public void fillRawData() throws IOException
 	{
 		int count = 0;
 		for(int i = 0; i < wcaIds.length; i++)
@@ -258,7 +223,7 @@ public class Main implements Runnable
 	 * This method calculates the best results from either the {@code kinchRaw} array itself, for from the WRs in the WCA database.
 	 * @param relative Flags whether to use the best results found from the imported data, or from the current WRs. 
 	 */
-	private void calculateBest(boolean relative)
+	public void calculateBest(boolean relative)
 	{
 		if(relative)
 		{
@@ -293,7 +258,7 @@ public class Main implements Runnable
 	/**
 	 * This method fills the {@code kinchDone} array with all the calculated KinchRanks except for MBLD.
 	 */
-	private void fillKinch()
+	public void fillKinch()
 	{
 		for(int i = 0; i < wcaIds.length; i++)
 		{
@@ -310,7 +275,7 @@ public class Main implements Runnable
 	 * @param relative Flags whether to use the best result found from the imported data, or from the current WR. 
 	 * @throws IOException 
 	 */
-	private void fillKinchWithMBLD(boolean relative) throws IOException
+	public void fillKinchWithMBLD(boolean relative) throws IOException
 	{
 		for(int i = 0; i < wcaIds.length; i++)
 		{
@@ -338,38 +303,6 @@ public class Main implements Runnable
 		{
 			finalKinch[i] = Util.calculateAverage(kinchDone[i]);
 		}
-	}
-	
-	/**
-	 * This method takes all the processed data and outputs it into a CSV file to the default location.
-	 * @throws IOException
-	 */
-	private void fillCSV() throws IOException
-	{
-		CSVWriter writer = new CSVWriter(new FileWriter(new File("." + File.separator + "kinch.csv")), ',');
-
-		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "333fm", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "444bf", "555bf", "333mbf"};
-		writer.writeNext(header);
-
-		for(int i = 1; i <= wcaIds.length; i++)
-		{
-			String[] output = new String[20];
-			for(int j = 0; j < output.length; j++)
-			{
-				if(j == 0)
-					output[0] = wcaIds[i - 1];
-				else if(j == 1)
-					output[1] = Double.toString(finalKinch[i - 1]);
-				else
-				{
-					output[j] = Double.toString(kinchDone[i - 1][j - 2]);
-				}
-			}
-
-			writer.writeNext(output);
-		}
-
-		writer.close();
 	}
 	
 	/**
@@ -416,14 +349,14 @@ public class Main implements Runnable
 
 		writer.close();
 	}
-	
+
 	@Override
 	public void run() {
 		try {
 			start();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
 	}
 }

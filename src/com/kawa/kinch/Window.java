@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 /**
@@ -27,8 +28,8 @@ public class Window extends JFrame {
 	/**
 	 * The version number.
 	 */
-	private static String version = "1.0b10";
-	
+	private static String version = "1.0b11";
+
 	private static final long serialVersionUID = 2052283588480241620L;
 	private JCheckBox clean;
 	private JTextArea console;
@@ -45,7 +46,7 @@ public class Window extends JFrame {
 	private JCheckBox relative;
 	private JButton start;
 	private int checks = 0;
-	
+
 	public static String outputFileLocation;
 
 	/**
@@ -149,162 +150,162 @@ public class Window extends JFrame {
 		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
 		jPanel1Layout
-				.setHorizontalGroup(jPanel1Layout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
+		.setHorizontalGroup(jPanel1Layout
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(
+						jPanel1Layout
+						.createSequentialGroup()
+						.addContainerGap()
 						.addGroup(
 								jPanel1Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																GroupLayout.Alignment.LEADING)
-														.addComponent(
-																jScrollPane1)
-														.addComponent(
-																start,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
+								.createParallelGroup(
+										GroupLayout.Alignment.LEADING)
+										.addComponent(
+												jScrollPane1)
+												.addComponent(
+														start,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														Short.MAX_VALUE)
 														.addComponent(
 																jProgressBar1,
 																GroupLayout.DEFAULT_SIZE,
 																GroupLayout.DEFAULT_SIZE,
 																Short.MAX_VALUE)
-														.addGroup(
-																jPanel1Layout
+																.addGroup(
+																		jPanel1Layout
 																		.createSequentialGroup()
 																		.addGroup(
 																				jPanel1Layout
-																						.createParallelGroup(
-																								GroupLayout.Alignment.TRAILING)
+																				.createParallelGroup(
+																						GroupLayout.Alignment.TRAILING)
 																						.addComponent(
 																								jLabel2)
-																						.addComponent(
-																								jLabel1))
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.RELATED)
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								GroupLayout.Alignment.LEADING)
-																						.addComponent(
-																								jTextField1)
-																						.addComponent(
-																								jTextField2))
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.RELATED)
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								GroupLayout.Alignment.LEADING,
-																								false)
-																						.addComponent(
-																								fileChoose,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								outputChoose,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)))
-														.addGroup(
-																GroupLayout.Alignment.TRAILING,
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.addGap(0,
-																				401,
-																				Short.MAX_VALUE)
-																		.addGroup(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								GroupLayout.Alignment.LEADING)
-																						.addGroup(
-																								GroupLayout.Alignment.TRAILING,
-																								jPanel1Layout
-																										.createSequentialGroup()
-																										.addComponent(
-																												relative)
+																								.addComponent(
+																										jLabel1))
 																										.addPreferredGap(
 																												LayoutStyle.ComponentPlacement.RELATED)
-																										.addComponent(
-																												clean))
-																						.addComponent(
-																								jCheckBox1,
-																								GroupLayout.Alignment.TRAILING))))
-										.addContainerGap()));
+																												.addGroup(
+																														jPanel1Layout
+																														.createParallelGroup(
+																																GroupLayout.Alignment.LEADING)
+																																.addComponent(
+																																		jTextField1)
+																																		.addComponent(
+																																				jTextField2))
+																																				.addPreferredGap(
+																																						LayoutStyle.ComponentPlacement.RELATED)
+																																						.addGroup(
+																																								jPanel1Layout
+																																								.createParallelGroup(
+																																										GroupLayout.Alignment.LEADING,
+																																										false)
+																																										.addComponent(
+																																												fileChoose,
+																																												GroupLayout.DEFAULT_SIZE,
+																																												GroupLayout.DEFAULT_SIZE,
+																																												Short.MAX_VALUE)
+																																												.addComponent(
+																																														outputChoose,
+																																														GroupLayout.DEFAULT_SIZE,
+																																														GroupLayout.DEFAULT_SIZE,
+																																														Short.MAX_VALUE)))
+																																														.addGroup(
+																																																GroupLayout.Alignment.TRAILING,
+																																																jPanel1Layout
+																																																.createSequentialGroup()
+																																																.addGap(0,
+																																																		401,
+																																																		Short.MAX_VALUE)
+																																																		.addGroup(
+																																																				jPanel1Layout
+																																																				.createParallelGroup(
+																																																						GroupLayout.Alignment.LEADING)
+																																																						.addGroup(
+																																																								GroupLayout.Alignment.TRAILING,
+																																																								jPanel1Layout
+																																																								.createSequentialGroup()
+																																																								.addComponent(
+																																																										relative)
+																																																										.addPreferredGap(
+																																																												LayoutStyle.ComponentPlacement.RELATED)
+																																																												.addComponent(
+																																																														clean))
+																																																														.addComponent(
+																																																																jCheckBox1,
+																																																																GroupLayout.Alignment.TRAILING))))
+																																																																.addContainerGap()));
 		jPanel1Layout
-				.setVerticalGroup(jPanel1Layout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
+		.setVerticalGroup(jPanel1Layout
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(
+						jPanel1Layout
+						.createSequentialGroup()
+						.addContainerGap()
 						.addGroup(
 								jPanel1Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																GroupLayout.Alignment.BASELINE)
-														.addComponent(jLabel1)
-														.addComponent(
-																jTextField1,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																fileChoose))
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																GroupLayout.Alignment.BASELINE)
-														.addComponent(jLabel2)
-														.addComponent(
-																jTextField2,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																outputChoose))
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jCheckBox1)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED,
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addComponent(jScrollPane1,
-												GroupLayout.PREFERRED_SIZE,
-												201, GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.UNRELATED)
-										.addGroup(
-												jPanel1Layout
-														.createParallelGroup(
-																GroupLayout.Alignment.BASELINE)
-														.addComponent(clean)
-														.addComponent(relative))
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(jProgressBar1,
+								.createParallelGroup(
+										GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel1)
+										.addComponent(
+												jTextField1,
 												GroupLayout.PREFERRED_SIZE,
 												GroupLayout.DEFAULT_SIZE,
 												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(start).addContainerGap()));
+												.addComponent(
+														fileChoose))
+														.addPreferredGap(
+																LayoutStyle.ComponentPlacement.RELATED)
+																.addGroup(
+																		jPanel1Layout
+																		.createParallelGroup(
+																				GroupLayout.Alignment.BASELINE)
+																				.addComponent(jLabel2)
+																				.addComponent(
+																						jTextField2,
+																						GroupLayout.PREFERRED_SIZE,
+																						GroupLayout.DEFAULT_SIZE,
+																						GroupLayout.PREFERRED_SIZE)
+																						.addComponent(
+																								outputChoose))
+																								.addPreferredGap(
+																										LayoutStyle.ComponentPlacement.RELATED)
+																										.addComponent(jCheckBox1)
+																										.addPreferredGap(
+																												LayoutStyle.ComponentPlacement.RELATED,
+																												GroupLayout.DEFAULT_SIZE,
+																												Short.MAX_VALUE)
+																												.addComponent(jScrollPane1,
+																														GroupLayout.PREFERRED_SIZE,
+																														201, GroupLayout.PREFERRED_SIZE)
+																														.addPreferredGap(
+																																LayoutStyle.ComponentPlacement.UNRELATED)
+																																.addGroup(
+																																		jPanel1Layout
+																																		.createParallelGroup(
+																																				GroupLayout.Alignment.BASELINE)
+																																				.addComponent(clean)
+																																				.addComponent(relative))
+																																				.addPreferredGap(
+																																						LayoutStyle.ComponentPlacement.UNRELATED)
+																																						.addComponent(jProgressBar1,
+																																								GroupLayout.PREFERRED_SIZE,
+																																								GroupLayout.DEFAULT_SIZE,
+																																								GroupLayout.PREFERRED_SIZE)
+																																								.addPreferredGap(
+																																										LayoutStyle.ComponentPlacement.RELATED)
+																																										.addComponent(start).addContainerGap()));
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(
 				GroupLayout.Alignment.LEADING).addComponent(jPanel1,
-				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-				Short.MAX_VALUE));
+						GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+						Short.MAX_VALUE));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				GroupLayout.Alignment.LEADING).addComponent(jPanel1,
-				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-				Short.MAX_VALUE));
+						GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+						Short.MAX_VALUE));
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -312,7 +313,7 @@ public class Window extends JFrame {
 
 		System.out.println("Displaying GUI for SoCalKinch v" + version);
 		System.out
-				.println("CSV Parsing and Tabulating provided by OpenCSV 3.8, under the Apache 2.0 license");
+		.println("CSV Parsing and Tabulating provided by OpenCSV 3.8, under the Apache 2.0 license");
 	}
 
 	private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,25 +340,16 @@ public class Window extends JFrame {
 	}
 
 	private void startActionPerformed(java.awt.event.ActionEvent evt) {
-		if (start.getText().equals("Start!")) {
-			if (jCheckBox1.isSelected()) {
-				Main main = new Main(jTextField1.getText(), console,
-						jProgressBar1, relative.isSelected(),
-						clean.isSelected());
-				new Thread(main).start();
-				start.setText("Stop!");
-			} else {
-				Main main = new Main(jTextField1.getText(), console,
-						jProgressBar1, relative.isSelected(),
-						clean.isSelected(), new File(outputFileLocation
-								+ File.separator + "kinch.csv"));
-				new Thread(main).start();
-				start.setText("Stop!");
-			}
-		} else if (start.getText().equals("Stop!")) {
-			System.exit(0);
+		Main main = new Main(jTextField1.getText(), console,
+					jProgressBar1, relative.isSelected(),
+					clean.isSelected(), new File(outputFileLocation
+							+ File.separator + "kinch.csv"));
+		
+		if (start.getText().equals("Start!")) 
+		{
+			new Thread(main).start();
+			start.setEnabled(false);
 		}
-
 	}
 
 	private void relativeActionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,8 +357,8 @@ public class Window extends JFrame {
 
 	private void outputChooseActionPerformed(java.awt.event.ActionEvent evt) {
 		JFileChooser chooser = new JFileChooser();
-		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int returnVal = chooser.showSaveDialog(jPanel1);
+		chooser.setFileSelectionMode(1);
+		int returnVal = chooser.showDialog(this, null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				jTextField2.setText(chooser.getSelectedFile()
@@ -388,8 +380,8 @@ public class Window extends JFrame {
 		if (jCheckBox1.isSelected()) {
 			try {
 				jTextField2
-						.setText(new File("." + File.separator + "kinch.csv")
-								.getCanonicalPath());
+				.setText(new File("." + File.separator + "kinch.csv")
+				.getCanonicalPath());
 				jTextField2.setEnabled(false);
 				outputChoose.setEnabled(false);
 				checks++;
@@ -415,7 +407,7 @@ public class Window extends JFrame {
 	 *            the command line arguments
 	 */
 	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new Window().setVisible(true);
 			}

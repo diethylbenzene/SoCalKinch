@@ -25,5 +25,9 @@ OpenCSV 3.8
 
 ## Usage
 
+Double-click for the GUI version.
+
+For the non-GUI version:
+
 `java -jar socalkinch.jar [WCA ID file path] [relativeOrWR (true or false)] [cleanOnExit(true or false)] [Output .csv file path]`
 

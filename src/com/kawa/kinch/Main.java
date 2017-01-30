@@ -46,14 +46,14 @@ public class Main implements Runnable
 	/**
 	 * This is the list of WCA events which use an average to calculate. 
 	 */
-	public static final String[] EVENTS_AVERAGE = {"222", "333", "444", "555", "666", "777", "333oh", "333ft", "minx", "pyram", "sq1", "clock", "skewb"};
+	public static final String[] EVENTS_AVERAGE = {"222", "333", "444", "555", "666", "777", "333oh", "333ft", "333fm", "minx", "pyram", "sq1", "clock", "skewb"};
 	
 	/**
 	 * This is the list of WCA events which use a single to calculate. <br><br><b>N.B.) </b>Conventionally, 3BLD and FMC can be interchanged between 
 	 * average and single, whichever works best for the competitor. However, since there exists more single results for these events than average results, 
 	 * it makes more sense for competitors to be ranked using their singles.
 	 */
-	public static final String[] EVENTS_BESTOF = {"333bf", "333fm", "444bf", "555bf", "333mbf"};
+	public static final String[] EVENTS_BESTOF = {"333bf", "444bf", "555bf", "333mbf"};
 	
 	/**
 	 * This is a 2D {@code int} array that holds the raw WCA data.
@@ -280,7 +280,7 @@ public class Main implements Runnable
 
 				for(int i = 0; i < EVENTS_BESTOF.length; i++)
 				{
-					fastestIndex[i + 13] = Parser.parseForWR(Parser.DB_SINGLE, EVENTS_BESTOF[i]);
+					fastestIndex[i + EVENTS_AVERAGE.length] = Parser.parseForWR(Parser.DB_SINGLE, EVENTS_BESTOF[i]);
 				}
 			}
 			catch(IOException e)
@@ -348,7 +348,7 @@ public class Main implements Runnable
 	{
 		CSVWriter writer = new CSVWriter(new FileWriter(new File("." + File.separator + "kinch.csv")), ',');
 
-		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "333fm", "444bf", "555bf", "333mbf"};
+		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "333fm", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "444bf", "555bf", "333mbf"};
 		writer.writeNext(header);
 
 		for(int i = 1; i <= wcaIds.length; i++)
@@ -381,7 +381,7 @@ public class Main implements Runnable
 	{
 		CSVWriter writer = new CSVWriter(new FileWriter(file));
 
-		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "333fm", "444bf", "555bf", "333mbf"};
+		String[] header = {"Person", "KinchRank", "222", "333", "444", "555", "666", "777", "333oh", "333ft", "333fm", "minx", "pyram", "sq1", "clock", "skewb", "333bf", "444bf", "555bf", "333mbf"};
 		writer.writeNext(header);
 
 		String[][] csvOut = new String[wcaIds.length][20];

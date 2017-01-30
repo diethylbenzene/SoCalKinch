@@ -6,7 +6,7 @@ A Flexible KinchRanks system.
 ## About
 I developed this program to facilitate generating KinchRanks for the SoCal area, but have since adapted it for use with certain regions.
 
-SoCal takes a list of WCA IDs from a `.txt` file, separated by newlines.
+SoCalKinch takes a list of WCA IDs from a `.txt` file, separated by newlines.
 
 Example:
 
@@ -30,4 +30,3 @@ Double-click for the GUI version.
 For the non-GUI version:
 
 `java -jar socalkinch.jar [WCA ID file path] [relativeOrWR (true or false)] [cleanOnExit(true or false)] [Output .csv file path]`
-

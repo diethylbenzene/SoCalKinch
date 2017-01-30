@@ -112,10 +112,6 @@ public class Main implements Runnable
 	private boolean relative;
 	
 	/**
-	 * This flags whether or not to use the default location for the output CSV file.
-	 */
-	
-	/**
 	 * This is the output CSV {@link File}.
 	 */
 	private File outputFile;

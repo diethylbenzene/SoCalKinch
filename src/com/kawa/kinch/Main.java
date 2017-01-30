@@ -181,7 +181,7 @@ public class Main implements Runnable
 	}
 	
 	public static void main(String[] args) {
-		new Thread(new Main("/Users/ethanvovan/Documents/wca.txt", false, false, new File("/Users/ethanvovan/Desktop/test.csv"))).start();
+		new Thread(new Main(args[0], Boolean.parseBoolean(args[1]), Boolean.parseBoolean(args[2]), new File(args[3]))).start();
 	}
 
 	/**
